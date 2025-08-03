@@ -69,11 +69,11 @@ export default function RegisterPage() {
 
   return (
     <>
-      <div className=" min-h-screen  bg-gradient-to-br from-pink-500 via-purple-500 to-red-300 flex items-center justify-center px-4">
-        <div className="bg-white dark:bg-gray-800 rounded-2xl p-10 max-w-xl w-full shadow-2xl  ">
+      <div className=" min-h-screen  bg-gradient-to-br from-pink-500 via-purple-500 to-red-300 flex items-center justify-center px-4 sm:px-6 md:px-10 py-8">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-10 max-w-xl w-full shadow-2xl  sm:p-10  sm:max-w-md md:max-w-lg">
           <form onSubmit={handleSubmit(handleRegister)}>
             <div className="flex flex-col gap-6">
-              <h1 className="text-center text-4xl font-bold bg-gradient-to-r from-rose-500 via-orange-400 to-yellow-500 text-transparent bg-clip-text drop-shadow-lg">
+              <h1 className="text-center text-4xl sm:text-4xl font-bold bg-gradient-to-r from-rose-500 via-orange-400 to-yellow-500 text-transparent bg-clip-text drop-shadow-lg">
                 Create Account
               </h1>
               <Input
