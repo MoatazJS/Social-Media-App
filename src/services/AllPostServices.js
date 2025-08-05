@@ -1,10 +1,10 @@
 import axios from "axios";
 const baseUrl = "https://linked-posts.routemisr.com/";
-export async function getAllPosts() {
-  const token = localStorage.getItem("token");
+
+export async function getAllPostsApi() {
   try {
     const { data } = await axios.get(baseUrl + "posts", {
-      headers: { token },
+      headers: { token: localStorage.getItem("token") },
     });
     return data;
   } catch (error) {

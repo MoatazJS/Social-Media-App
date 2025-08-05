@@ -5,7 +5,7 @@ export async function registerApi(formData) {
     const { data } = await axios.post(baseUrl + "users/signup", formData);
     return data;
   } catch (error) {
-    return error.response.data;
+    return error.response ? error.response.data.error : error.message;
   }
 }
 export async function loginApi(formData) {
@@ -13,6 +13,6 @@ export async function loginApi(formData) {
     const { data } = await axios.post(baseUrl + "users/signin", formData);
     return data;
   } catch (error) {
-    return error.response.data;
+    return error.response ? error.response.data.error : error.message;
   }
 }
