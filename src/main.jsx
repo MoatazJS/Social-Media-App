@@ -9,6 +9,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <HeroUIProvider>
       <ToastProvider />
+
       <App />
     </HeroUIProvider>
   </StrictMode>
