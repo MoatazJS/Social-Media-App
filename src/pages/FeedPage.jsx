@@ -1,5 +1,9 @@
-import React from "react";
-
+// import React, { useEffect, useState } from "react";
+// import NavbarComponent from "../components/NavbarComponent";
+// import { getAllPosts } from "../services/AllPostServices";
 export default function FeedPage() {
-  return <div>FeedPage</div>;
+  // const [posts, setPosts] = useState([]);
+  // const [error, setError] = useState([]);
+
+  return <>FeedPage</>;
 }

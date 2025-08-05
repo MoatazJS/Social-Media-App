@@ -6,7 +6,7 @@ import {
   Select,
   SelectItem,
 } from "@heroui/react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import RegisterPage from "./RegisterPage";
 import { useForm } from "react-hook-form";
@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../schema/loginSchema";
 import { loginApi } from "../services/authServices";
 import { motion } from "framer-motion";
+import AuthContextProvider, { authContext } from "../contexts/AuthContext";
 
 function showSuccessToast() {
   addToast({
@@ -35,6 +36,9 @@ function showErrorToast() {
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  const { setIsLoggedIn } = useContext(authContext);
+
   const {
     handleSubmit,
     register,
@@ -56,6 +60,7 @@ export default function LoginPage() {
     } else {
       showSuccessToast();
       localStorage.setItem("token", data.token);
+      setIsLoggedIn(true);
       setTimeout(() => {
         navigate("/");
       }, 2000);

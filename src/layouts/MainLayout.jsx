@@ -1,10 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import NavbarComponent from "../components/NavbarComponent";
 
 export default function MainLayout() {
   return (
     <div>
-      <Outlet />
+      <NavbarComponent />
+      <div className="container mx-auto">
+        <Outlet />
+      </div>
     </div>
   );
 }
