@@ -1,12 +1,22 @@
-import React from "react";
 import Comment from "./Comment";
 import CardHeader from "./Post/CardHeader";
 import PostBody from "./Post/PostBody";
 import PostFooter from "./Post/PostFooter";
 import PostActions from "./Post/PostActions";
+import { useNavigate } from "react-router-dom";
 export default function Post({ post }) {
+  const navigate = useNavigate();
+  const openPostDetails = (e) => {
+    if (e.currentTarget.id === "post-card") {
+      navigate(`/post-details`);
+    }
+  };
   return (
-    <div className="bg-white w-full rounded-md shadow-md h-auto py-3 px-3 my-5">
+    <div
+      id="post-card"
+      onClick={openPostDetails}
+      className=" bg-white w-full rounded-md shadow-md h-auto py-3 px-3 my-5"
+    >
       <div className="w-full h-16 items-center flex justify-between ">
         <CardHeader
           avatar={post.user.photo}
@@ -31,7 +41,7 @@ export default function Post({ post }) {
         </svg>
       </div>
       <PostBody caption={post.body} image={post.image} />
-      <PostFooter numOfComments={post.comment.length} />
+      <PostFooter numOfComments={post.comments.length} />
       <PostActions />
       {post.comments[0] && <Comment comment={post.comments[0]} />}
     </div>
