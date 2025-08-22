@@ -1,20 +1,15 @@
 import React from "react";
 import Comment from "./Comment";
+import CardHeader from "./Post/CardHeader";
 export default function Post({ post }) {
   return (
     <div className="bg-white w-full rounded-md shadow-md h-auto py-3 px-3 my-5">
       <div className="w-full h-16 items-center flex justify-between ">
-        <div className="flex">
-          <img
-            className=" rounded-full w-10 h-10 mr-3"
-            src={post.user.photo}
-            alt
-          />
-          <div>
-            <h3 className="text-md font-semibold ">{post.user.name}</h3>
-            <p className="text-xs text-gray-500">{post.createdAt}</p>
-          </div>
-        </div>
+        <CardHeader
+          avatar={post.user.photo}
+          header={post.user.name}
+          subheader={post.createdAt}
+        />
         <svg
           className="w-16"
           xmlns="http://www.w3.org/2000/svg"

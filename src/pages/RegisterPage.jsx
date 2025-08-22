@@ -50,6 +50,7 @@ export default function RegisterPage() {
       gender: "",
     },
     resolver: zodResolver(scheme),
+    mode: "onTouched",
   });
 
   async function handleRegister(formData) {

@@ -8,6 +8,19 @@ export async function getAllPostsApi() {
     });
     return data;
   } catch (error) {
-    return error.response.data;
+    return error.response ? error.response.data.error : error.message;
+  }
+}
+export async function addPost(formData) {
+  try {
+    const { data } = await axios.post(baseUrl + "posts", formData, {
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    });
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error.response.data);
   }
 }
