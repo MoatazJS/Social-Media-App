@@ -2,7 +2,10 @@ import React from "react";
 
 export default function PostActions() {
   return (
-    <div className="grid grid-cols-3 w-full px-5 my-3 border-t border-divider pt-4">
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="grid grid-cols-3 w-full px-5 my-3 border-t border-divider pt-4"
+    >
       <button className="flex flex-row justify-center items-center w-full space-x-3">
         <svg
           xmlns="http://www.w3.org/2000/svg"

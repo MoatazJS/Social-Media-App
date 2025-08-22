@@ -2,7 +2,7 @@ import React from "react";
 import userPhoto from "/src/assets/user-photo.jpg";
 export default function CardHeader({ avatar, header, subheader }) {
   return (
-    <div className="flex">
+    <div onClick={(e) => e.stopPropagation()} className="flex">
       <img
         onError={(e) => (e.target.src = userPhoto)}
         className=" rounded-full w-10 h-10 mr-3"
