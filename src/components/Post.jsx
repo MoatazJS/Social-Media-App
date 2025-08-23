@@ -4,11 +4,11 @@ import PostBody from "./Post/PostBody";
 import PostFooter from "./Post/PostFooter";
 import PostActions from "./Post/PostActions";
 import { useNavigate } from "react-router-dom";
-export default function Post({ post }) {
+export default function Post({ post, commentsLimit }) {
   const navigate = useNavigate();
   const openPostDetails = (e) => {
     if (e.currentTarget.id === "post-card") {
-      navigate(`/post-details`);
+      navigate(`/post-details/${post._id}`);
     }
   };
   return (
@@ -43,7 +43,9 @@ export default function Post({ post }) {
       <PostBody caption={post.body} image={post.image} />
       <PostFooter numOfComments={post.comments.length} />
       <PostActions />
-      {post.comments[0] && <Comment comment={post.comments[0]} />}
+      {post.comments.slice(0, commentsLimit).map((comment) => (
+        <Comment key={comment.id} comment={comment} />
+      ))}
     </div>
   );
 }

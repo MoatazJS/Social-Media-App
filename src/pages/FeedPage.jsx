@@ -33,7 +33,9 @@ export default function FeedPage() {
             <SkeletonAvatar />
           </>
         ) : (
-          posts.map((post) => <Post key={post.id} post={post} />)
+          posts.map((post) => (
+            <Post key={post.id} post={post} commentsLimit={1} />
+          ))
         )}
       </div>
     </>

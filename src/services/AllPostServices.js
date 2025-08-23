@@ -11,6 +11,16 @@ export async function getAllPostsApi() {
     return error.response ? error.response.data.error : error.message;
   }
 }
+export async function getSinglePostApi(id) {
+  try {
+    const { data } = await axios.get(baseUrl + "posts/" + id, {
+      headers: { token: localStorage.getItem("token") },
+    });
+    return data;
+  } catch (error) {
+    return error.response ? error.response.data.error : error.message;
+  }
+}
 export async function addPost(formData) {
   try {
     const { data } = await axios.post(baseUrl + "posts", formData, {
