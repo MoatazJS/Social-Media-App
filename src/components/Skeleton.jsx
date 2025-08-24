@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Skeleton } from "@heroui/react";
-import SkeletonComment from "./CommentSkeleton";
+import SkeletonComment from "./Comment/CommentSkeleton";
 
 export default function SkeletonAvatar() {
   return (

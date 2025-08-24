@@ -1,4 +1,5 @@
-import Comment from "./Comment";
+import Comment from "./Comment/Comment";
+
 import CardHeader from "./Post/CardHeader";
 import PostBody from "./Post/PostBody";
 import PostFooter from "./Post/PostFooter";
@@ -6,9 +7,11 @@ import PostActions from "./Post/PostActions";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button, Input } from "@heroui/react";
+import CommentInput from "./Comment/CommentInput";
 export default function Post({ post, commentsLimit }) {
   const [isLoading, setIsLoading] = useState(false);
   const [visibleComments, setVisibleComments] = useState(5);
+
   const showMore = () => {
     setIsLoading(true);
     setTimeout(() => {
@@ -55,13 +58,11 @@ export default function Post({ post, commentsLimit }) {
       <PostBody caption={post.body} image={post.image} />
       <PostFooter numOfComments={post.comments.length} />
       <PostActions />
-      <div className="flex">
-        <Input />
-      </div>
+      <CommentInput />
       {post.comments
         .slice(0, commentsLimit ?? visibleComments)
         .map((comment) => (
-          <Comment key={comment.id} comment={comment} />
+          <Comment key={comment._id} comment={comment} />
         ))}
       {visibleComments < post.comments.length && !commentsLimit && (
         <Button

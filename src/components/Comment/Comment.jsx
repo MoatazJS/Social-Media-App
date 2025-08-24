@@ -1,6 +1,6 @@
 import React from "react";
 
-import CardHeader from "./Post/CardHeader";
+import CardHeader from "../Post/CardHeader";
 
 export default function Comment({ comment }) {
   return (
