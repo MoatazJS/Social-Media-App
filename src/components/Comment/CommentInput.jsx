@@ -1,10 +1,12 @@
 import { Button, Input } from "@heroui/react";
 import React, { useState } from "react";
+import { addComment } from "../../services/CommentService";
 
-export default function CommentInput() {
+export default function CommentInput({ postId }) {
   const [commentContent, setCommentContent] = useState("");
-  function handleCommentSumbit() {
-    console.log(commentContent);
+  async function handleCommentSumbit() {
+    const response = await addComment(commentContent, postId);
+    console.log(response);
   }
   return (
     <div className="flex my-4" onClick={(e) => e.stopPropagation()}>

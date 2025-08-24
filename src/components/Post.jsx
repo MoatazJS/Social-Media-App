@@ -58,7 +58,7 @@ export default function Post({ post, commentsLimit }) {
       <PostBody caption={post.body} image={post.image} />
       <PostFooter numOfComments={post.comments.length} />
       <PostActions />
-      <CommentInput />
+      <CommentInput postId={post._id} />
       {post.comments
         .slice(0, commentsLimit ?? visibleComments)
         .map((comment) => (
