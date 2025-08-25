@@ -6,7 +6,7 @@ export async function getAllPostsApi() {
     const { data } = await axios.get(baseUrl + "posts", {
       headers: { token: localStorage.getItem("token") },
       params: {
-        page: 34,
+        page: 35,
         // page: data.paginationInfo,
       },
     });
@@ -33,6 +33,17 @@ export async function addPost(formData) {
       },
     });
     console.log(data);
+    return data;
+  } catch (error) {
+    return error.response ? error.response.data.error : error.message;
+  }
+}
+
+export async function deletePostApi(id) {
+  try {
+    const { data } = await axios.delete(baseUrl + "posts/" + id, {
+      headers: { token: localStorage.getItem("token") },
+    });
     return data;
   } catch (error) {
     return error.response ? error.response.data.error : error.message;

@@ -5,48 +5,50 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  useDisclosure,
 } from "@heroui/react";
+import { deletePostApi } from "../services/AllPostServices";
+import { useState } from "react";
 
-export default function DeleteModal() {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+export default function DeleteModal({ post, isOpen, onOpenChange }) {
+  const [isDeleting, setIsDeleting] = useState(false);
 
+  async function handleDeletePost() {
+    setIsDeleting(true);
+    const response = await deletePostApi(post._id);
+    console.log(response);
+    setIsDeleting(false);
+  }
   return (
     <>
-      <Button onPress={onOpen}>Open Modal</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal
+        onClick={(e) => e.stopPropagation()}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      >
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
-                Modal Title
-              </ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Delete</ModalHeader>
               <ModalBody>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat
-                  consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
-                  incididunt cillum quis. Velit duis sit officia eiusmod Lorem
-                  aliqua enim laboris do dolor eiusmod. Et mollit incididunt
-                  nisi consectetur esse laborum eiusmod pariatur proident Lorem
-                  eiusmod et. Culpa deserunt nostrud ad veniam.
+                  Are you sure? This action is permenant and cannot be reversed.
                 </p>
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
+                <Button
+                  isLoading={isDeleting}
+                  color="danger"
+                  variant="light"
+                  onPress={onClose}
+                >
+                  Cancel
                 </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
+                <Button
+                  isLoading={isDeleting}
+                  color="primary"
+                  onPress={handleDeletePost}
+                >
+                  Delete
                 </Button>
               </ModalFooter>
             </>

@@ -4,13 +4,14 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+  useDisclosure,
 } from "@heroui/react";
 import { authContext } from "../../contexts/AuthContext";
-// import DeleteModal from "../DeleteModal";
+import DeleteModal from "../DeleteModal";
 
 export default function Dropper({ post }) {
   const { userData } = useContext(authContext);
-
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <>
       {post.user._id === userData?._id && (
@@ -36,12 +37,18 @@ export default function Dropper({ post }) {
           <DropdownMenu aria-label="Static Actions">
             <DropdownItem key="copy">Copy link</DropdownItem>
             <DropdownItem key="edit">Edit Post</DropdownItem>
-            <DropdownItem key="delete" className="text-danger" color="danger">
+            <DropdownItem
+              key="delete"
+              className="text-danger"
+              color="danger"
+              onPress={onOpen}
+            >
               Delete Post
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
       )}
+      <DeleteModal post={post} isOpen={isOpen} onOpenChange={onOpenChange} />
     </>
   );
 }
