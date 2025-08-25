@@ -5,6 +5,10 @@ export async function getAllPostsApi() {
   try {
     const { data } = await axios.get(baseUrl + "posts", {
       headers: { token: localStorage.getItem("token") },
+      params: {
+        page: 33,
+        // page: data.paginationInfo,
+      },
     });
     return data;
   } catch (error) {
@@ -31,6 +35,6 @@ export async function addPost(formData) {
     console.log(data);
     return data;
   } catch (error) {
-    console.log(error.response.data);
+    return error.response ? error.response.data.error : error.message;
   }
 }

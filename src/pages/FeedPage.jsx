@@ -34,7 +34,12 @@ export default function FeedPage() {
           </>
         ) : (
           posts.map((post) => (
-            <Post key={post.id} post={post} commentsLimit={1} />
+            <Post
+              callback={getAllPosts}
+              key={post.id}
+              post={post}
+              commentsLimit={1}
+            />
           ))
         )}
       </div>

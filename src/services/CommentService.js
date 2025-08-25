@@ -23,3 +23,17 @@ export async function addComment(commentContent, postId) {
     return error.response ? error.response.data.error : error.message;
   }
 }
+
+export async function getCommentsApi(postId) {
+  try {
+    const { data } = await axios.get(
+      baseUrl + "posts/" + postId + "/comments",
+      {
+        headers: { token: localStorage.getItem("token") },
+      }
+    );
+    return data;
+  } catch (error) {
+    return error.response ? error.response.data.error : error.message;
+  }
+}

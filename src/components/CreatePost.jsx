@@ -53,6 +53,7 @@ export default function CreatePost({ getAllPosts }) {
           {/* Caption Input */}
           <div>
             <textarea
+              autoFocus
               value={body}
               onChange={(e) => setBody(e.target.value)}
               placeholder="What's on your mind?"

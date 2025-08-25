@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button, Input } from "@heroui/react";
 import CommentInput from "./Comment/CommentInput";
-export default function Post({ post, commentsLimit }) {
+export default function Post({ post, commentsLimit, callback }) {
   const [isLoading, setIsLoading] = useState(false);
   const [visibleComments, setVisibleComments] = useState(5);
 
@@ -58,7 +58,7 @@ export default function Post({ post, commentsLimit }) {
       <PostBody caption={post.body} image={post.image} />
       <PostFooter numOfComments={post.comments.length} />
       <PostActions />
-      <CommentInput postId={post._id} />
+      <CommentInput callback={callback} postId={post._id} />
       {post.comments
         .slice(0, commentsLimit ?? visibleComments)
         .map((comment) => (
