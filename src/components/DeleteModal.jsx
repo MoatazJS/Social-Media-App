@@ -9,14 +9,18 @@ import {
 import { deletePostApi } from "../services/AllPostServices";
 import { useState } from "react";
 
-export default function DeleteModal({ post, isOpen, onOpenChange }) {
+export default function DeleteModal({ post, isOpen, onOpenChange, callback }) {
   const [isDeleting, setIsDeleting] = useState(false);
 
-  async function handleDeletePost() {
+  async function handleDeletePost(onClose) {
     setIsDeleting(true);
     const response = await deletePostApi(post._id);
-    console.log(response);
+
     setIsDeleting(false);
+    if (response.message === "success") {
+      onClose();
+      callback();
+    }
   }
   return (
     <>
@@ -46,7 +50,7 @@ export default function DeleteModal({ post, isOpen, onOpenChange }) {
                 <Button
                   isLoading={isDeleting}
                   color="primary"
-                  onPress={handleDeletePost}
+                  onPress={() => handleDeletePost(onClose)}
                 >
                   Delete
                 </Button>

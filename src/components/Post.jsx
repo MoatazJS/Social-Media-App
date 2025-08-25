@@ -44,7 +44,7 @@ export default function Post({ post, commentsLimit, callback }) {
           header={post.user.name}
           subheader={post.createdAt}
         />
-        <Dropper post={post} />
+        <Dropper post={post} callback={callback} />
       </div>
       <PostBody caption={post.body} image={post.image} />
       <PostFooter numOfComments={post.comments.length} />

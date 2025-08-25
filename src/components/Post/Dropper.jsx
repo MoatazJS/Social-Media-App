@@ -9,7 +9,7 @@ import {
 import { authContext } from "../../contexts/AuthContext";
 import DeleteModal from "../DeleteModal";
 
-export default function Dropper({ post }) {
+export default function Dropper({ post, callback }) {
   const { userData } = useContext(authContext);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
@@ -48,7 +48,12 @@ export default function Dropper({ post }) {
           </DropdownMenu>
         </Dropdown>
       )}
-      <DeleteModal post={post} isOpen={isOpen} onOpenChange={onOpenChange} />
+      <DeleteModal
+        callback={callback}
+        post={post}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      />
     </>
   );
 }
