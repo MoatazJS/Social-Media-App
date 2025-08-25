@@ -6,7 +6,7 @@ export async function getAllPostsApi() {
     const { data } = await axios.get(baseUrl + "posts", {
       headers: { token: localStorage.getItem("token") },
       params: {
-        page: 33,
+        page: 34,
         // page: data.paginationInfo,
       },
     });

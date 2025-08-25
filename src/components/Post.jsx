@@ -1,5 +1,10 @@
 import Comment from "./Comment/Comment";
-
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@heroui/react";
 import CardHeader from "./Post/CardHeader";
 import PostBody from "./Post/PostBody";
 import PostFooter from "./Post/PostFooter";
@@ -8,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button, Input } from "@heroui/react";
 import CommentInput from "./Comment/CommentInput";
+import Dropper from "./Post/Dropper";
 export default function Post({ post, commentsLimit, callback }) {
   const [isLoading, setIsLoading] = useState(false);
   const [visibleComments, setVisibleComments] = useState(5);
@@ -38,22 +44,7 @@ export default function Post({ post, commentsLimit, callback }) {
           header={post.user.name}
           subheader={post.createdAt}
         />
-        <svg
-          className="w-16"
-          xmlns="http://www.w3.org/2000/svg"
-          width={27}
-          height={27}
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#b0b0b0"
-          strokeWidth={2}
-          strokeLinecap="square"
-          strokeLinejoin="round"
-        >
-          <circle cx={12} cy={12} r={1} />
-          <circle cx={19} cy={12} r={1} />
-          <circle cx={5} cy={12} r={1} />
-        </svg>
+        <Dropper post={post} />
       </div>
       <PostBody caption={post.body} image={post.image} />
       <PostFooter numOfComments={post.comments.length} />
