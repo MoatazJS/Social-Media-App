@@ -16,7 +16,7 @@ import { authContext } from "../contexts/AuthContext";
 export default function NavbarComponent() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const { isLoggedIn, setIsLoggedIn, setUserData } = useContext(authContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(authContext);
 
   const menuItems = [
     "Profile",
@@ -35,7 +35,6 @@ export default function NavbarComponent() {
   function logOut() {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
-    setUserData(null);
     navigate("/login");
   }
 
